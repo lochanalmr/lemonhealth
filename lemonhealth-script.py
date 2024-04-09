@@ -18,32 +18,51 @@ def regioninput():
     region=str(input("Insert G for non-asian users, A for asian users ")).lower().strip()
     return region
 
-def BMIcalcimperial():
-    height=float(input("\n\nHeight (lbs) : "))
-    print("1 ft=12 in")
-    weight=float(input("Weight (in): "))
-    bmi=(weight/2.205)/(height*height/39.37**2)
-    print("BMI: ", bmi)
+def heightinput():
+    h = float(input("Height: "))
+    return h
 
-def BMIcalcmetric():
-    unit = unitselection()
-    if unit=='m':
-        height=float(input("\n\nHeight (m) : "))
-        weight=float(input("Weight (kg): "))
-        bmi=weight/(height*height)
-        print("BMI: ", bmi)
+def weightinput():
+    w = float(input("Weight: "))
+    return w
+
+def heightengine(unit):
+    if unit == 'm':
+        print("Insert height in meters")
+        h = heightinput()
+        return h
     elif unit == 'i':
-        BMIcalcimperial()
+        print("Insert height in inches")
+        h = heightinput()
+        return (h/39.37)
     else:
-      print("Input error")
+        print("Invalid input")
 
-def BMIcalcclass():
-    print("\n\nLet's calculate your BMI")
-    print("Regional data will only be used for BMI classification, according to your region")
-    print("(Note:- Asian classification is different from WHO classification)")
-    region = regioninput()
+def weightengine(unit):
+    if unit == 'm':
+        print("Insert weight in kg")
+        w = weightinput()
+        return w
+    elif unit == 'i':
+        print("Insert weight in lbs")
+        w = heightinput()
+        return (w/2.205)
+    else:
+        print("Invalid input")
+    
+def bmi():
+    print("Let's calculate your BMI")
     unit = unitselection()
-    bmi = BMIcalcmetric()
+    h = heightengine(unit)
+    w = weightengine(unit)
+    bmi = w/ (h**2)
+    return bmi
+
+def BMIclass():
+    bmi = bmi()
+    print("Regional data will be used for BMI classification, according to your region")
+    region = regioninput()
+    print(bmi)
 
     if region=='g':
         if bmi<=18.5:
@@ -65,34 +84,12 @@ def BMIcalcclass():
         if bmi>=27:
             print("You are classified as 'Obese'")
 
-def BAIcalcimperial():
-    heightii=float(input("\n\nHeight (in) : "))
-    hcii=float(input("Hip Circumference (in): "))
-    bai=(hcii*2.54)/((heightii/39.37)**1.5-18)
-    print("BAI: ",bai)
-    return bai
-
-def BAIcalcmetric():
-    unit = unitselection()
-    if unit == 'm':
-        heightim=float(input("\n\nHeight (m) : "))
-        hcim=float(input("Hip Circumference (cm): "))
-        bai=hcim/((heightim**1.5)-18)
-        return bai
-    elif unit == 'i':
-        BAIcalcimperial()
-    else:
-      print("Input error")
-
-def BAIcalcclass():
-    bai = BAIcalcmetric()
-    print('BAI:',bai)
-    return bai
+#need to insert bmi like function to calculate bai, and functions to retreive other needed data
 
 def BAIclass():
     gender = genderselection()
     age = basicData()
-    bai = BAIcalcclass()
+    bai = bai()
 
     if gender=='w':
            if age<20:
@@ -156,9 +153,6 @@ def BAIclass():
                if bai>=31:
                    print("You are classified as 'Obese'")
 
-def BAIcalcclassmain():
-    print("Let's calculate your BAI")
-    BAIcalcclass()
 
 def WHRcalcclass():
     print("Let's calculate your WHR")
@@ -304,11 +298,11 @@ def modeSelection():
     print("MultiMeasure function will calculate all other mentioned functions")
     opt=input("\nBMI/BAI/WHR/MM: ").lower().strip()
     if opt == 'bmi':
-        BMIcalcclass()
+        BMIclass()
     if opt == 'mm':
         MultiMeasure()
     if opt == 'bai':
-        BAIcalcclassmain()
+        bai()
     if opt == 'whr':
         WHRcalcclass()
 
