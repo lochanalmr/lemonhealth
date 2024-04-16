@@ -12,6 +12,12 @@ def genderselection():
 def unitselection():
     print("We recommend using metric units for calculations, but using imperial units is also available as an option")
     unit=str(input("Insert I to calculate using imperial units,\nM to calculate using metric units ")).lower().strip()
+    if unit == 'm':
+        print("Metric unit based calculation was chosen, so enter lengths in meters, and weight in kg")
+    elif unit == 'i':
+        print("Imperial unit based calculation was chosen, so enter lengths in inches, and weight in lbs")
+    else:
+        print("Invalid input")
     return unit
 
 def regioninput():
@@ -310,5 +316,3 @@ modeSelection()
 
 print("\nLemonHealth v0.01")
 exitp=input("Press enter to close the program")
-print("Goodbye, if you have enough time to read this, which means you need to check your PC right now :)")
-print("Otherwise, you are trying to steal the code by opening this inside an ide :)")
