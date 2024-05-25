@@ -6,6 +6,7 @@ Command line based health calculator made with ‘Python’ which can calculate 
 2. BAI (Body Adiposity Index)
 3. WHR (Waist to Hip Ratio)
 4. MM (MultiMeasure)
+MultiMeasure function can be used to run all supported functions.
 
 ## prerequisites
 Python should be installed on the system. (download from python.org)

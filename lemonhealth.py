@@ -26,21 +26,21 @@ def regioninput():
 
 def heightengine(unit):
     if unit == 'm':
-        h = heightinput("Insert height in meters: ")
-        return h
+        h = input("Insert height in meters: ")
+        return float(h)
     elif unit == 'i':
-        h = heightinput("Insert height in inches: ")
-        return (h/39.37)
+        h = input("Insert height in inches: ")
+        return float(h/39.37)
     else:
         print("Invalid input")
 
 def weightengine(unit):
     if unit == 'm':
-        w = weightinput("Insert weight in kg: ")
-        return w
+        w = input("Insert weight in kg: ")
+        return float(w)
     elif unit == 'i':
-        w = heightinput("Insert weight in lbs: ")
-        return (w/2.205)
+        w = input("Insert weight in lbs: ")
+        return float(w/2.205)
     else:
         print("Invalid input")
     
@@ -50,13 +50,12 @@ def bmi():
     h = heightengine(unit)
     w = weightengine(unit)
     region = regioninput()
-    bmi = w/ (h**2)
-    bmi = bmi()
+    bmi = w / (h**2)
     print(bmi)
-    BMIclass(region)
-    return bmi
+    BMIclass(region, bmi)
+    return float(bmi)
 
-def BMIclass(region):
+def BMIclass(region, bmi):
     if region=='g':
         if bmi<=18.5:
             print("You are classified as 'Underweight'")
@@ -82,7 +81,7 @@ def hipengine(unit):
         h = input("Insert hip circumference in cm: ")
         return h
     elif unit == 'i':
-        h = heightinput("Insert hip circumference in inches: ")
+        h = input("Insert hip circumference in inches: ")
         return ((h/39.37)*(100))
     else:
         print("Invalid input")
@@ -95,7 +94,6 @@ def bai():
     gender = genderselection()
     age = basic_data()
     bai = hc / (h**(1.5))
-    bai = bai()
     print(bai)
     BAIclass(gender, age)
     return bai
@@ -166,10 +164,10 @@ def BAIclass(gender, age):
 def waistengine(unit):
     if unit == 'm':
         wc = input("Insert waist in cm: ")
-        return wc
+        return float(wc)
     elif unit == 'i':
         wc = input("Insert waist in inches: ")
-        return wc
+        return float(wc)
     else:
         print("input error")
 
@@ -180,7 +178,6 @@ def whr():
     hc = hipengine(unit)
     gender = genderselection()
     whr = wc / hc
-    whr = whr()
     print(whr)
     WHRclass(gender)
     return whr
