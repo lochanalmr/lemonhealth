@@ -1,6 +1,6 @@
-print("\nLemonHealth v0.01")
+print("\nLemonHealth v1")
 
-def basicData():
+def basic_data():
     age=input("Age: ")
     return int(age)
 
@@ -24,34 +24,22 @@ def regioninput():
     region=str(input("Insert G for non-asian users, A for asian users ")).lower().strip()
     return region
 
-def heightinput():
-    h = float(input("Height: "))
-    return h
-
-def weightinput():
-    w = float(input("Weight: "))
-    return w
-
 def heightengine(unit):
     if unit == 'm':
-        print("Insert height in meters")
-        h = heightinput()
+        h = heightinput("Insert height in meters: ")
         return h
     elif unit == 'i':
-        print("Insert height in inches")
-        h = heightinput()
+        h = heightinput("Insert height in inches: ")
         return (h/39.37)
     else:
         print("Invalid input")
 
 def weightengine(unit):
     if unit == 'm':
-        print("Insert weight in kg")
-        w = weightinput()
+        w = weightinput("Insert weight in kg: ")
         return w
     elif unit == 'i':
-        print("Insert weight in lbs")
-        w = heightinput()
+        w = heightinput("Insert weight in lbs: ")
         return (w/2.205)
     else:
         print("Invalid input")
@@ -61,15 +49,14 @@ def bmi():
     unit = unitselection()
     h = heightengine(unit)
     w = weightengine(unit)
+    region = regioninput()
     bmi = w/ (h**2)
+    bmi = bmi()
+    print(bmi)
+    BMIclass(region)
     return bmi
 
-def BMIclass():
-    bmi = bmi()
-    print("Regional data will be used for BMI classification, according to your region")
-    region = regioninput()
-    print(bmi)
-
+def BMIclass(region):
     if region=='g':
         if bmi<=18.5:
             print("You are classified as 'Underweight'")
@@ -90,13 +77,30 @@ def BMIclass():
         if bmi>=27:
             print("You are classified as 'Obese'")
 
-#need to insert bmi like function to calculate bai, and functions to retreive other needed data
+def hipengine(unit):
+    if unit == 'm':
+        h = input("Insert hip circumference in cm: ")
+        return h
+    elif unit == 'i':
+        h = heightinput("Insert hip circumference in inches: ")
+        return ((h/39.37)*(100))
+    else:
+        print("Invalid input")
 
-def BAIclass():
+def bai():
+    print("Let's calculate your BMI")
+    unit = unitselection()
+    h = heightengine(unit)
+    hc = hipengine(unit)
     gender = genderselection()
-    age = basicData()
+    age = basic_data()
+    bai = hc / (h**(1.5))
     bai = bai()
+    print(bai)
+    BAIclass(gender, age)
+    return bai
 
+def BAIclass(gender, age):
     if gender=='w':
            if age<20:
                print("We are unable to categorize BAI for people under 20")
@@ -159,17 +163,29 @@ def BAIclass():
                if bai>=31:
                    print("You are classified as 'Obese'")
 
+def waistengine(unit):
+    if unit == 'm':
+        wc = input("Insert waist in cm: ")
+        return wc
+    elif unit == 'i':
+        wc = input("Insert waist in inches: ")
+        return wc
+    else:
+        print("input error")
 
-def WHRcalcclass():
+def whr():
     print("Let's calculate your WHR")
-    print("The units of the inputs don't matter here, but make sure to use the same units")
-    wcm=float(input("Waist circumference: "))
-    hcm=float(input("Hip circumference: "))
-    print("Gender related data will only be used for classification of BAI")
-    gender=str(input("Insert M for men, or W for women ")).lower()
-    whr=wcm/hcm
-    print("WHR=",whr)
+    unit = unitselection()
+    wc = waistengine(unit)
+    hc = hipengine(unit)
+    gender = genderselection()
+    whr = wc / hc
+    whr = whr()
+    print(whr)
+    WHRclass(gender)
+    return whr
 
+def WHRclass(gender):
     if gender=='m':
         if whr<=0.95:
             print("You are classified as having a 'low health risk'")
@@ -201,118 +217,29 @@ def WHRcalcclass():
 def MultiMeasure():
     print("\nLet's proceed with MultiMeasure")
     print("MultiMeasure function will calculate all health functions available in the program")
-    print("\nUsing metric units is recommended, but imperial unit based calculation is also available.")
-    unit1=input("Enter M to calculate using metric units or I to calculate using imperial units: ").strip().lower()
 
-    if unit1=='m':
-        weight1m=float(input("\nWeight (kg): "))
-        height1m=float(input("Height (m): "))
-        hc1m=float(input("Hip Circumference (cm): "))
-        wc1m=float(input("Waist cicumference (cm): "))
-        print("\nAlright, required basic data was collected")
-        print("Now, let's get the required data to classify your data")
-        gender1 = genderselection()
-        age1 = basicData()
-        region1 = regioninput()
-        print("\nAll required data is now collected.")
-        print("Your inputs are being processed ...")
-        bmi=weight1m/(height1m**2)
-        bai=height1m/(hc1m**1.5-18)
-        whr=hc1m/wc1m
-
-        import time
-        time.sleep(5)
-
-        print("Let's see the results: ")
-        print("BMI:",bmi)
-        print("BAI: ",bai)
-        print("WHR: ",whr)
-        print("\nData is now being classified according to your age, region and gender...")
-
-        time.sleep(5)
-        print("Classification complete")
-
-        if gender1=='m':
-            print("\nWHR classification details: ")
-            if whr<=0.95:
-                print("You are classified as having a 'low health risk'")
-                print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
-                print("'Low health risk' predicts that you have a lower chance to develop above conditions")
-            if 0.95<whr<=1.0:
-                print("You are classified as having a 'moderate health risk'")
-                print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
-                print("'Moderate health risk' predicts that you have a moderate chance to develop above conditions")
-            if whr>1.0:
-                print("You are classified as having a 'high health risk'")
-                print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
-                print("'High health risk' predicts that you have a higher chance to develop above conditions")
-
-            print("\nBAI classification details: ")
-            if age1<20:
-                print("We are unable to categorize BAI for people under 20")
-            if 20<=age1<40:
-               if bai<8:
-                   print("You are classified as 'Underweight'")
-               if 8<=bai<21:
-                   print("You are classified as 'Healthy'")
-               if 26>bai>=21:
-                   print("You are classified as'Overweight'")
-               if bai>=26:
-                   print("You are classified as 'Obese'")
-            if 40<=age1<60:
-               if bai<11:
-                   print("You are classified as 'Underweight'")
-               if 11<=bai<23:
-                   print("You are classified as 'Healthy'")
-               if 29>bai>=23:
-                   print("You are classified as'Overweight'")
-               if bai>=29:
-                   print("You are classified as 'Obese'")
-            if 60<age1:
-               if bai<13:
-                   print("You are classified as 'Underweight'")
-               if 13<=bai<25:
-                   print("You are classified as 'Healthy'")
-               if 31>bai>=25:
-                   print("You are classified as'Overweight'")
-               if bai>=31:
-                   print("You are classified as 'Obese'")
-
-            print("\nBMI classification details: ")
-            if region1=='o':
-                if bmi<=18.5:
-                    print("You are classified as 'Underweight'")
-                if 18.5<=bmi<25:
-                    print("You are classified as 'Normal'")
-                if 25<=bmi<30:
-                    print("You are classified as 'Overweight'")
-                if bmi>=30:
-                    print("You are classified as 'Obese'")
-            elif region1=='a':
-                if bmi<=18.5:
-                    print("You are classified as 'Underweight'")
-                if 18.5<=bmi<23:
-                    print("You are classified as 'Normal'")
-                if 23<=bmi<27:
-                    print("You are classified as 'Overweight'")
-                if bmi>=27:
-                    print("You are classified as 'Obese'")
+    bmi = bmi()
+    bai = bai()
+    whr = whr()
 
 def modeSelection():
     print("\nWhat do you want to calculate?")
     print("BMI- Body Mass Index \nBAI- Body Adiposity Index \nWHR- Waist to Hip Ratio\nMM- MultiMeasure")
-    print("MultiMeasure function will calculate all other mentioned functions")
-    opt=input("\nBMI/BAI/WHR/MM: ").lower().strip()
+    print("MultiMeasure function will run all supported functions methodically")
+    opt = input("\nBMI/BAI/WHR/MM: ").lower().strip()
+    
     if opt == 'bmi':
-        BMIclass()
-    if opt == 'mm':
+        bmi()
+    elif opt == 'mm':
         MultiMeasure()
-    if opt == 'bai':
+    elif opt == 'bai':
         bai()
-    if opt == 'whr':
-        WHRcalcclass()
+    elif opt == 'whr':
+        whr()
+    else:
+        print("input error")
 
 modeSelection()
 
-print("\nLemonHealth v0.01")
-exitp=input("Press enter to close the program")
+print("\nLemonHealth v1")
+exitp = input("Press enter to close the program")
