@@ -7,7 +7,5 @@ Command line based health calculator made with ‘Python’ which can calculate 
 3. WHR (Waist to Hip Ratio)
 4. MM (MultiMeasure)
 
-MultiMeasure is a special feature built into LemonHealth, to calculate all supported health functions at once, without repeated input of the same data. It is useful when you need to track health progress, with all the data in one view.
-
 ## prerequisites
 Python should be installed on the system. (download from python.org)
