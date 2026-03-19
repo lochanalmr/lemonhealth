@@ -30,7 +30,7 @@ def heightengine(unit):
         return float(h)
     elif unit == 'i':
         h = input("Insert height in inches: ")
-        return float(h/39.37)
+        return float(h) / 39.37
     else:
         print("Invalid input")
 
@@ -40,7 +40,7 @@ def weightengine(unit):
         return float(w)
     elif unit == 'i':
         w = input("Insert weight in lbs: ")
-        return float(w/2.205)
+        return float(w) / 2.205
     else:
         print("Invalid input")
     
@@ -59,35 +59,35 @@ def BMIclass(region, bmi):
     if region=='g':
         if bmi<=18.5:
             print("You are classified as 'Underweight'")
-        if 18.5<=bmi<25:
+        elif 18.5<=bmi<25:
             print("You are classified as 'Normal'")
-        if 25<=bmi<30:
+        elif 25<=bmi<30:
             print("You are classified as 'Overweight'")
-        if bmi>=30:
+        elif bmi>=30:
             print("You are classified as 'Obese'")
 
-    if region=='a':
+    elif region=='a':
         if bmi<=18.5:
             print("You are classified as 'Underweight'")
-        if 18.5<=bmi<23:
+        elif 18.5<=bmi<23:
             print("You are classified as 'Normal'")
-        if 23<=bmi<27:
+        elif 23<=bmi<27:
             print("You are classified as 'Overweight'")
-        if bmi>=27:
+        elif bmi>=27:
             print("You are classified as 'Obese'")
 
 def hipengine(unit):
     if unit == 'm':
         h = input("Insert hip circumference in cm: ")
-        return h
+        return float(h)
     elif unit == 'i':
         h = input("Insert hip circumference in inches: ")
-        return ((h/39.37)*(100))
+        return (float(h) / 39.37) * 100
     else:
         print("Invalid input")
 
 def bai():
-    print("Let's calculate your BMI")
+    print("Let's calculate your BAI")
     unit = unitselection()
     h = heightengine(unit)
     hc = hipengine(unit)
@@ -95,71 +95,71 @@ def bai():
     age = basic_data()
     bai = hc / (h**(1.5))
     print(bai)
-    BAIclass(gender, age)
+    BAIclass(gender, age, bai)
     return bai
 
-def BAIclass(gender, age):
+def BAIclass(gender, age, bai):
     if gender=='w':
-           if age<20:
-               print("We are unable to categorize BAI for people under 20")
-           if 20<=age<40:
-               if bai<21:
-                   print("You are classified as 'Underweight'")
-               if 21<=bai<33:
-                   print("You are classified as 'Healthy'")
-               if 39>bai>=33:
-                   print("You are classified as'Overweight'")
-               if bai>=39:
-                   print("You are classified as 'Obese'")
-           if 40<=age<60:
-               if bai<23:
-                   print("You are classified as 'Underweight'")
-               if 23<=bai<35:
-                   print("You are classified as 'Healthy'")
-               if 41>bai>=35:
-                   print("You are classified as'Overweight'")
-               if bai>=41:
-                   print("You are classified as 'Obese'")
-           if 60<age:
-               if bai<25:
-                   print("You are classified as 'Underweight'")
-               if 25<=bai<38:
-                   print("You are classified as 'Healthy'")
-               if 43>bai>=38:
-                   print("You are classified as'Overweight'")
-               if bai>=43:
-                   print("You are classified as 'Obese'")
+        if age<20:
+            print("We are unable to categorize BAI for people under 20")
+        elif 20<=age<40:
+            if bai<21:
+                print("You are classified as 'Underweight'")
+            elif 21<=bai<33:
+                print("You are classified as 'Healthy'")
+            elif 33<=bai<39:
+                print("You are classified as 'Overweight'")
+            elif bai>=39:
+                print("You are classified as 'Obese'")
+        elif 40<=age<60:
+            if bai<23:
+                print("You are classified as 'Underweight'")
+            elif 23<=bai<35:
+                print("You are classified as 'Healthy'")
+            elif 35<=bai<41:
+                print("You are classified as 'Overweight'")
+            elif bai>=41:
+                print("You are classified as 'Obese'")
+        elif 60<age:
+            if bai<25:
+                print("You are classified as 'Underweight'")
+            elif 25<=bai<38:
+                print("You are classified as 'Healthy'")
+            elif 38<=bai<43:
+                print("You are classified as 'Overweight'")
+            elif bai>=43:
+                print("You are classified as 'Obese'")
 
-    if gender=='m':
-           if age<20:
-               print("We are unable to categorize BAI for people under 20")
-           if 20<=age<40:
-               if bai<8:
-                   print("You are classified as 'Underweight'")
-               if 8<=bai<21:
-                   print("You are classified as 'Healthy'")
-               if 26>bai>=21:
-                   print("You are classified as'Overweight'")
-               if bai>=26:
-                   print("You are classified as 'Obese'")
-           if 40<=age<60:
-               if bai<11:
-                   print("You are classified as 'Underweight'")
-               if 11<=bai<23:
-                   print("You are classified as 'Healthy'")
-               if 29>bai>=23:
-                   print("You are classified as'Overweight'")
-               if bai>=29:
-                   print("You are classified as 'Obese'")
-           if 60<age:
-               if bai<13:
-                   print("You are classified as 'Underweight'")
-               if 13<=bai<25:
-                   print("You are classified as 'Healthy'")
-               if 31>bai>=25:
-                   print("You are classified as'Overweight'")
-               if bai>=31:
-                   print("You are classified as 'Obese'")
+    elif gender=='m':
+        if age<20:
+            print("We are unable to categorize BAI for people under 20")
+        elif 20<=age<40:
+            if bai<8:
+                print("You are classified as 'Underweight'")
+            elif 8<=bai<21:
+                print("You are classified as 'Healthy'")
+            elif 21<=bai<26:
+                print("You are classified as 'Overweight'")
+            elif bai>=26:
+                print("You are classified as 'Obese'")
+        elif 40<=age<60:
+            if bai<11:
+                print("You are classified as 'Underweight'")
+            elif 11<=bai<23:
+                print("You are classified as 'Healthy'")
+            elif 23<=bai<29:
+                print("You are classified as 'Overweight'")
+            elif bai>=29:
+                print("You are classified as 'Obese'")
+        elif 60<age:
+            if bai<13:
+                print("You are classified as 'Underweight'")
+            elif 13<=bai<25:
+                print("You are classified as 'Healthy'")
+            elif 25<=bai<31:
+                print("You are classified as 'Overweight'")
+            elif bai>=31:
+                print("You are classified as 'Obese'")
 
 def waistengine(unit):
     if unit == 'm':
@@ -167,7 +167,7 @@ def waistengine(unit):
         return float(wc)
     elif unit == 'i':
         wc = input("Insert waist in inches: ")
-        return float(wc)
+        return float(wc) * 2.54
     else:
         print("input error")
 
@@ -179,34 +179,34 @@ def whr():
     gender = genderselection()
     whr = wc / hc
     print(whr)
-    WHRclass(gender)
+    WHRclass(gender, whr)
     return whr
 
-def WHRclass(gender):
+def WHRclass(gender, whr):
     if gender=='m':
         if whr<=0.95:
             print("You are classified as having a 'low health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
             print("'Low health risk' predicts that you have a lower chance to develop above conditions")
-        if 0.95<whr<=1.0:
+        elif 0.95<whr<=1.0:
             print("You are classified as having a 'moderate health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
             print("'Moderate health risk' predicts that you have a moderate chance to develop above conditions")
-        if whr>1.0:
+        elif whr>1.0:
             print("You are classified as having a 'high health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes' in men")
             print("'High health risk' predicts that you have a higher chance to develop above conditions")
 
-    if gender=='w':
+    elif gender=='w':
         if whr<=0.80:
             print("You are classified as having a 'low health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes', 'Lower fertility' in women")
             print("'Low health risk' predicts that you have a lower chance to develop above conditions")
-        if 0.80<whr<=0.85:
+        elif 0.80<whr<=0.85:
             print("You are classified as having a 'moderate health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes', 'Lower fertility' in women")
             print("'Moderate health risk' predicts that you have a moderate chance to develop above conditions")
-        if whr>0.85:
+        elif whr>0.85:
             print("You are classified as having a 'high health risk'")
             print("Health risk is commonly defined as increased risk of 'Cardiovascular diseases', 'Type-2 diabetes', 'Lower fertility' in women")
             print("'High health risk' predicts that you have a higher chance to develop above conditions")
@@ -214,10 +214,38 @@ def WHRclass(gender):
 def MultiMeasure():
     print("\nLet's proceed with MultiMeasure")
     print("MultiMeasure function will calculate all health functions available in the program")
-
-    bmi = bmi()
-    bai = bai()
-    whr = whr()
+    print("All required data will be collected once, then all calculations will be presented together.\n")
+    
+    # Collect all data once
+    unit = unitselection()
+    height = heightengine(unit)
+    weight = weightengine(unit)
+    waist = waistengine(unit)
+    hip = hipengine(unit)
+    gender = genderselection()
+    age = basic_data()
+    region = regioninput()
+    
+    # Calculate all metrics
+    bmi_result = weight / (height**2)
+    bai_result = hip / (height**(1.5))
+    whr_result = waist / hip
+    
+    # Display all results
+    print("\n" + "="*50)
+    print("MULTIMEASURE RESULTS")
+    print("="*50)
+    
+    print(f"\nBody Mass Index (BMI): {bmi_result:.2f}")
+    BMIclass(region, bmi_result)
+    
+    print(f"\nBody Adiposity Index (BAI): {bai_result:.2f}")
+    BAIclass(gender, age, bai_result)
+    
+    print(f"\nWaist-to-Hip Ratio (WHR): {whr_result:.2f}")
+    WHRclass(gender, whr_result)
+    
+    print("\n" + "="*50)
 
 def modeSelection():
     print("\nWhat do you want to calculate?")
